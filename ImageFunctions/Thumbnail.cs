@@ -102,6 +102,7 @@ namespace ImageFunctions
                             var height = Convert.ToInt32(Math.Round((decimal)(image.Height / divisor)));
 
                             image.Mutate(x => x.Resize(thumbnailWidth, height));
+                            image.Mutate(x => x.Grayscale(GrayscaleMode.Bt601));
                             image.Save(output, encoder);
                             output.Position = 0;
                             await blockBlob.UploadFromStreamAsync(output);
